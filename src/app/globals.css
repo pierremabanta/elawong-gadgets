@@ -24,7 +24,7 @@
   --color-chart-3: #8b6914;
   --color-chart-4: #1a1a1a;
   --color-chart-5: #e8c84c;
-  --radius: 0.625rem;
+  --radius: 0.25rem;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }

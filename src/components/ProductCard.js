@@ -47,7 +47,7 @@ export default function ProductCard({ product }) {
   const inCompare = isInCompare(id);
 
   return (
-    <div className="group relative bg-card rounded-xl border border-border/60 overflow-hidden hover:shadow-sm hover:border-border transition-all duration-300 flex flex-col">
+    <div className="group relative bg-card border border-border/20 overflow-hidden transition-all duration-300 flex flex-col">
       {/* Image */}
       <Link
         href={`/shop/${id}`}
@@ -62,7 +62,7 @@ export default function ProductCard({ product }) {
         />
         {badge && (
           <span
-            className={`absolute top-3 left-3 px-2.5 py-1 text-[10px] font-semibold rounded-md ${
+            className={`absolute top-3 left-3 px-2.5 py-1 text-[10px] font-semibold ${
               badge === 'New'
                 ? 'bg-primary/10 text-primary'
                 : badge === 'Sale'
@@ -78,7 +78,7 @@ export default function ProductCard({ product }) {
         <button
           onClick={handleCompareClick}
           title={inCompare ? 'Remove from compare' : 'Add to compare'}
-          className={`absolute top-3 right-3 p-2 rounded-lg backdrop-blur-sm transition-all duration-200 ${
+          className={`absolute top-3 right-3 p-2 transition-all duration-200 ${
             inCompare
               ? 'bg-primary text-primary-foreground'
               : 'bg-background/80 text-muted-foreground hover:text-foreground'

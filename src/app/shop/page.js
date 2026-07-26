@@ -5,7 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import { useState, useMemo } from 'react';
 import { categories, getProductsByCategory } from '@/data/products';
 import ProductCard from '@/components/ProductCard';
-import { Search, Apple } from 'lucide-react';
+import { Search } from 'lucide-react';
 
 function ShopContent() {
   const searchParams = useSearchParams();
@@ -36,7 +36,7 @@ function ShopContent() {
             placeholder="Search products..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-2.5 text-sm border border-input rounded-lg focus:outline-none focus:border-ring transition-colors bg-background"
+            className="w-full pl-10 pr-4 py-2.5 text-sm border border-input focus:outline-none focus:border-ring transition-colors bg-background"
           />
         </div>
       </div>
@@ -50,7 +50,7 @@ function ShopContent() {
               setActiveCategory(cat.id);
               setSearchQuery('');
             }}
-            className={`shrink-0 px-4 py-2 text-xs font-medium rounded-lg transition-colors ${
+            className={`shrink-0 px-4 py-2 text-xs font-medium transition-colors ${
               activeCategory === cat.id
                 ? 'bg-primary text-primary-foreground shadow-sm'
                 : 'bg-secondary text-muted-foreground hover:bg-accent hover:text-accent-foreground'
@@ -103,12 +103,9 @@ export default function ShopPage() {
   return (
     <div className="container py-8 md:py-12">
       {/* Header */}
-      <div className="mb-8">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-foreground text-primary-foreground text-xs font-medium rounded-full mb-4">
-          <Apple className="w-3.5 h-3.5 text-chart-2" />
-          Shop
-        </div>
-        <h1 className="text-2xl sm:text-3xl font-bold text-foreground">All Products</h1>
+      <div className="mb-10">
+        <span className="text-xs font-semibold text-primary uppercase tracking-[0.15em] block mb-1">Shop</span>
+        <h1 className="text-3xl sm:text-4xl font-bold text-foreground tracking-tight">All Products</h1>
       </div>
 
       <Suspense fallback={<ShopFallback />}>

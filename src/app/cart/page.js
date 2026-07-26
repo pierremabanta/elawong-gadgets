@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Trash2, Minus, Plus, ShoppingBag, ArrowLeft, ChevronRight, Apple } from 'lucide-react';
+import { Trash2, Minus, Plus, ShoppingBag, ArrowLeft, ChevronRight } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 
 export default function CartPage() {
@@ -30,12 +30,9 @@ export default function CartPage() {
 
   return (
     <div className="container py-8 md:py-12">
-      <div className="mb-8">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-foreground text-primary-foreground text-xs font-medium rounded-full mb-4">
-          <Apple className="w-3.5 h-3.5 text-chart-2" />
-          Cart
-        </div>
-        <h1 className="text-2xl sm:text-3xl font-bold text-foreground">
+      <div className="mb-10">
+        <span className="text-xs font-semibold text-primary uppercase tracking-[0.15em] block mb-1">Cart</span>
+        <h1 className="text-3xl sm:text-4xl font-bold text-foreground tracking-tight">
           Shopping Cart ({cartCount} item{cartCount !== 1 ? 's' : ''})
         </h1>
       </div>

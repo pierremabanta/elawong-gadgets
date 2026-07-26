@@ -21,7 +21,7 @@ export default function Navbar() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border/40">
+    <header className="sticky top-0 z-50 bg-card border-b border-border/20">
       <nav className="container flex items-center justify-between h-16 md:h-20">
         {/* Logo */}
         <StoreLogo />
