@@ -39,15 +39,13 @@ export default function ColorSwatches({ colors, selectedColor, onSelect }) {
           ref={(el) => (buttonRefs.current[color.name] = el)}
           onClick={() => onSelect?.(color)}
           title={color.name}
-          className="relative z-10 block w-5 h-5 rounded-full border-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-foreground/40 focus:ring-offset-2 focus:ring-offset-background"
+          className="relative z-10 block w-5 h-5 rounded-full border transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-foreground/40 focus:ring-offset-2 focus:ring-offset-background"
           style={{
             backgroundColor: color.hex,
             borderColor: selectedColor?.name === color.name ? '#0a0a0a' : 'transparent',
             boxShadow:
-              selectedColor?.name === color.name
-                ? '0 0 0 3px rgba(10,10,10,1), 0 0 8px 2px rgba(10,10,10,0.4)'
-                : 'none',
-            transform: selectedColor?.name === color.name ? 'scale(1.15)' : 'scale(1)',
+              selectedColor?.name === color.name ? '0 0 0 1px rgba(10,10,10,0.8)' : 'none',
+            transform: selectedColor?.name === color.name ? 'scale(1.1)' : 'scale(1)',
           }}
         >
           <span className="sr-only">{color.name}</span>
