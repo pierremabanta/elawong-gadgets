@@ -73,7 +73,7 @@ export default function ProductDetailPage() {
         <p className="text-muted-foreground mb-8">The product you&apos;re looking for doesn&apos;t exist.</p>
         <Link
           href="/shop"
-          className="inline-flex items-center gap-2 px-6 py-3 bg-foreground text-primary-foreground text-sm font-medium"
+          className="inline-flex items-center gap-2 px-6 py-3 bg-foreground text-white text-sm font-medium"
         >
           <ChevronLeft className="w-4 h-4" />
           Back to Shop

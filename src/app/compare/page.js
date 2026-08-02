@@ -175,7 +175,7 @@ export default function ComparePage() {
   return (
     <div className="container py-8 md:py-12">
       <div className="mb-8">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-foreground text-primary-foreground text-xs font-medium rounded-full mb-4">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-foreground text-white text-xs font-medium rounded-full mb-4">
           <GitCompare className="w-3.5 h-3.5" />
           Compare Products
         </div>

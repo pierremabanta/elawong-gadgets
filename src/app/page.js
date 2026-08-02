@@ -84,10 +84,10 @@ export default function HomePage() {
       {/* ===== CTA — direct, no fluff ===== */}
       <section className="container py-20 md:py-28">
         <div className="bg-foreground px-8 py-16 sm:px-14 sm:py-20 md:px-20 md:py-24 text-center">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary-foreground mb-4 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
             Visit Our Store Today
           </h2>
-          <p className="text-primary-foreground/50 text-sm sm:text-base max-w-md mx-auto mb-10">
+          <p className="text-white/60 text-sm sm:text-base max-w-md mx-auto mb-10">
             Located at Ayala Marikina. Drop by to see our full selection of Apple products.
           </p>
           <Link

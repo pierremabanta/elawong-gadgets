@@ -66,7 +66,7 @@ export default function ProductCard({ product }) {
               badge === 'New'
                 ? 'bg-primary/10 text-primary'
                 : badge === 'Sale'
-                ? 'bg-foreground text-primary-foreground'
+                ? 'bg-foreground text-white'
                 : 'bg-primary text-primary-foreground'
             }`}
           >

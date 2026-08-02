@@ -268,26 +268,26 @@ export function SiriBallHero({
         <SiriBallScene />
       </Suspense>
 
-      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent z-10" />
+      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent z-10" />
 
       <div className="relative z-20 flex flex-col items-center justify-end h-full pb-20 md:pb-32 text-center">
         <div className="max-w-3xl px-4">
           <div className="animate-fade-in-up inline-flex flex-col items-center mb-6">
             <span
               className="font-serif italic text-4xl sm:text-5xl md:text-6xl tracking-tight"
-              style={{ fontFamily: "'Georgia', 'Times New Roman', serif", color: '#c9a84c', lineHeight: 0.85 }}
+              style={{ fontFamily: "'Georgia', 'Times New Roman', serif", color: '#b8942c', lineHeight: 0.85 }}
             >
               Ela Wong
             </span>
             <span
               className="font-bold text-lg sm:text-xl md:text-2xl tracking-[0.2em] -mt-1"
-              style={{ color: '#ffffff' }}
+              style={{ color: '#0a0a0a' }}
             >
               GADGETS SHOP
             </span>
             <span
               className="text-xs sm:text-sm italic mt-0.5"
-              style={{ color: '#c9a84c' }}
+              style={{ color: '#b8942c' }}
             >
               by Shannela Co.
             </span>

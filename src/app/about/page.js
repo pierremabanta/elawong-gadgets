@@ -10,7 +10,7 @@ export default function AboutPage() {
         <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-primary/5 to-transparent rounded-full blur-3xl pointer-events-none" />
         
         <div className="container relative py-16 md:py-24 text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-foreground text-primary-foreground text-xs font-medium rounded-full mb-6">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-foreground text-white text-xs font-medium rounded-full mb-6">
             <Apple className="w-3.5 h-3.5 text-chart-2" />
             About Us
           </div>
