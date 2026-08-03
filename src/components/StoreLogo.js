@@ -5,9 +5,9 @@ export default function StoreLogo({ className = '', link = true }) {
     <img
       src="/logo.png"
       alt="Ela Wong Gadgets Shop — Authorized Reseller"
-      className={`h-10 md:h-12 w-auto object-contain ${className}`}
-      width={287}
-      height={288}
+      className={`h-8 md:h-10 w-auto object-contain ${className}`}
+      width={274}
+      height={100}
     />
   );
 
