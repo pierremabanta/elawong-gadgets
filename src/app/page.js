@@ -18,8 +18,8 @@ export default function HomePage() {
       />
 
       {/* ===== Brands conveyor belt ===== */}
-      <section className="border-t border-border/20 bg-background py-10 md:py-12">
-        <div className="container">
+      <section className="border-t border-border/20 bg-background py-8 md:py-10 w-full">
+        <div className="px-4 sm:px-6 lg:px-10">
           <BrandsMarquee label="Authorized Partner Brands" />
         </div>
       </section>
