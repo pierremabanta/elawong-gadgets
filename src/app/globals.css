@@ -161,3 +161,23 @@ input[type="number"] {
   animation: fadeInUp 0.8s ease-out 0.6s forwards;
   opacity: 0;
 }
+
+/* Brand logo conveyor belt */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+  }
+}
