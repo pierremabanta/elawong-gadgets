@@ -19,7 +19,7 @@ const COPY_COUNT = 6;
 // ⚙️ SPEED CONTROL — seconds it takes one set of logos to pass once.
 // Lower = faster (10 = quick drift), higher = slower (60 = lazy crawl).
 // Default 30. Just change this one number and redeploy.
-const SECONDS_PER_SET = 30;
+const SECONDS_PER_SET = 20;
 
 export default function BrandsMarquee({ label = 'Authorized Partner Brands' }) {
   const trackRef = useRef(null);
