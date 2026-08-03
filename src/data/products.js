@@ -31,6 +31,37 @@ export const products = [
       { name: "Black Titanium", hex: "#2d2d2d", image: "/images/iphone-15-pro-max/black-titanium.png" },
     ],
   },
+  {
+    id: "iphone-15",
+    name: "iPhone 15",
+    category: "iPhones",
+    price: 54990,
+    originalPrice: null,
+    image: "/images/iphone-15-pro-max/natural-titanium.png",
+    images: [
+      "/images/iphone-15-pro-max/natural-titanium.png",
+      "/images/iphone-15-pro-max/blue-titanium.png",
+      "/images/iphone-15-pro-max/white-titanium.png",
+      "/images/iphone-15-pro-max/black-titanium.png",
+    ],
+    description: "Dynamic Island, 48MP main camera, and the A16 Bionic chip. A great all-around iPhone.",
+    specs: [
+      "A16 Bionic chip",
+      "48MP Main | 12MP Ultra Wide | 2x optical zoom",
+      "6.1-inch Super Retina XDR display (2556x1179)",
+      "Aluminum design",
+      "Up to 20 hours video playback",
+      "USB-C connector",
+    ],
+    badge: null,
+    featured: true,
+    colors: [
+      { name: "Pink", hex: "#ffc0cb", image: "/images/iphone-15-pro-max/natural-titanium.png" },
+      { name: "Blue", hex: "#a0c4ff", image: "/images/iphone-15-pro-max/blue-titanium.png" },
+      { name: "White", hex: "#f0f0f0", image: "/images/iphone-15-pro-max/white-titanium.png" },
+      { name: "Black", hex: "#2d2d2d", image: "/images/iphone-15-pro-max/black-titanium.png" },
+    ],
+  },
 ];
 
 export const categories = [
