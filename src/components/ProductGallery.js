@@ -44,7 +44,7 @@ export default function ProductGallery({ images = [], productName, syncImage }) 
     <div className="flex flex-col gap-4">
       {/* Main Image */}
       <div
-        className="aspect-square bg-secondary/30 flex items-center justify-center p-8 sm:p-12 md:p-16 overflow-hidden select-none"
+        className="aspect-square bg-secondary/30 flex items-center justify-center p-8 sm:p-12 md:p-16 overflow-hidden select-none rounded-2xl"
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
@@ -66,8 +66,8 @@ export default function ProductGallery({ images = [], productName, syncImage }) 
               key={index}
               onClick={() => setSelectedIndex(index)}
               aria-label={`View image ${index + 1}`}
-              className={`h-1.5 transition-all duration-200 ${
-                selectedIndex === index ? 'w-6 bg-primary' : 'w-1.5 bg-border'
+              className={`h-1.5 transition-all duration-200 rounded-full ${
+                selectedIndex === index ? 'w-6 bg-primary' : 'w-1.5 bg-border hover:bg-border/80'
               }`}
             />
           ))}
@@ -81,9 +81,10 @@ export default function ProductGallery({ images = [], productName, syncImage }) 
             <button
               key={index}
               onClick={() => setSelectedIndex(index)}
-              className={`relative shrink-0 w-16 h-16 sm:w-20 sm:h-20 overflow-hidden border-2 transition-all duration-200 ${
+              aria-label={`View image ${index + 1}`}
+              className={`relative shrink-0 w-16 h-16 sm:w-20 sm:h-20 overflow-hidden rounded-xl transition-all duration-200 ${
                 selectedIndex === index
-                  ? 'border-primary'
+                  ? 'border-primary shadow-sm'
                   : 'border-border/60 hover:border-border'
               }`}
             >

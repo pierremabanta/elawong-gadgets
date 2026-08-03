@@ -38,7 +38,6 @@ export default function CheckoutPage() {
   };
 
   const handlePlaceOrder = () => {
-    // Demo mode: no actual payment, just show success
     setStep('success');
     setTimeout(() => clearCart(), 500);
   };
@@ -46,35 +45,35 @@ export default function CheckoutPage() {
   if (step === 'success') {
     return (
       <div className="max-w-lg mx-auto px-4 py-20 text-center">
-        <div className="w-16 h-16 rounded-lg bg-primary/20 flex items-center justify-center mx-auto mb-6">
+        <div className="w-16 h-16 rounded-xl bg-primary/15 flex items-center justify-center mx-auto mb-6">
           <Check className="w-6 h-6 text-primary" />
         </div>
-        <h1 className="text-2xl font-bold text-foreground mb-3">Order Placed! 🎉</h1>
+        <h1 className="text-2xl font-bold text-foreground mb-3">Order Placed!</h1>
         <p className="text-sm text-muted-foreground mb-2">
           Thank you for shopping with Ela Wong Gadgets!
         </p>
-        <p className="text-xs text-muted-foreground/60 mb-8">
+        <p className="text-xs text-muted-foreground/70 mb-8">
           This is a demo — no actual payment was processed. In production, you&apos;d receive a confirmation email with your order details.
         </p>
-        <div className="bg-secondary/30 rounded-2xl p-6 mb-8 text-left">
-          <p className="text-xs font-semibold text-muted-foreground/60 uppercase tracking-wider mb-3">Demo Order Summary</p>
+        <div className="bg-secondary/40 border border-border/60 rounded-2xl p-6 mb-8 text-left">
+          <p className="text-xs font-semibold text-muted-foreground/70 uppercase tracking-wider mb-3">Demo Order Summary</p>
           <p className="text-sm text-muted-foreground">
             <strong>Name:</strong> {form.firstName} {form.lastName}
           </p>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm text-muted-foreground mt-1">
             <strong>Payment:</strong> {paymentMethods.find((m) => m.id === paymentMethod)?.name}
           </p>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm text-muted-foreground mt-1">
             <strong>Total:</strong> {formatPrice(cartTotal)}
           </p>
-          <p className="text-xs text-muted-foreground/60 mt-3 italic">
+          <p className="text-[10px] text-muted-foreground/70 mt-3 italic">
             This is a prototype. Contact the store via Facebook Messenger to place a real order.
           </p>
         </div>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <Link
             href="/shop"
-            className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-foreground text-white text-sm font-medium rounded-lg"
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-primary-foreground text-sm font-medium rounded-xl transition-colors"
           >
             Continue Shopping
           </Link>
@@ -82,7 +81,7 @@ export default function CheckoutPage() {
             href="https://www.facebook.com/elawonggadgetsayalamarikina"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-border/60 text-muted-foreground text-sm font-medium rounded-lg hover:bg-secondary/30"
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-border text-muted-foreground text-sm font-medium rounded-xl hover:bg-secondary/40 transition-colors"
           >
             Visit Facebook Page
           </a>
@@ -96,7 +95,7 @@ export default function CheckoutPage() {
       <div className="max-w-3xl mx-auto px-4 py-20 text-center">
         <h1 className="text-2xl font-bold text-foreground mb-3">Your Cart is Empty</h1>
         <p className="text-sm text-muted-foreground mb-8">Add some items to proceed with checkout.</p>
-        <Link href="/shop" className="inline-flex items-center gap-2 px-6 py-3 bg-foreground text-white text-sm font-medium rounded-lg">
+        <Link href="/shop" className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground text-sm font-medium rounded-xl transition-colors">
           <ChevronLeft className="w-4 h-4" />
           Shop Now
         </Link>
@@ -107,15 +106,15 @@ export default function CheckoutPage() {
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
       <div className="mb-8">
-        <p className="text-xs font-semibold text-muted-foreground/60 uppercase tracking-wider mb-2">Checkout</p>
+        <p className="text-xs font-semibold text-muted-foreground/70 uppercase tracking-wider mb-2">Checkout</p>
         <h1 className="text-2xl sm:text-3xl font-bold text-foreground">Complete Your Order</h1>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
         {/* Form Section */}
-        <div className="lg:col-span-3 space-y-8">
+        <div className="lg:col-span-3 space-y-6">
           {/* Contact Information */}
-          <div className="bg-card border border-border/40 rounded-2xl p-6">
+          <div className="bg-card border border-border/60 rounded-2xl p-6">
             <h2 className="text-sm font-semibold text-foreground mb-4">Contact Information</h2>
             <div className="grid grid-cols-2 gap-4">
               <div>
@@ -124,7 +123,7 @@ export default function CheckoutPage() {
                   type="text"
                   value={form.firstName}
                   onChange={(e) => updateField('firstName', e.target.value)}
-                  className="w-full px-3 py-2 text-sm border border-border/60 rounded-xl focus:outline-none focus:border-ring transition-colors"
+                  className="w-full px-3.5 py-2.5 text-sm border border-input rounded-xl bg-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 transition-all"
                   placeholder="Juan"
                 />
               </div>
@@ -134,7 +133,7 @@ export default function CheckoutPage() {
                   type="text"
                   value={form.lastName}
                   onChange={(e) => updateField('lastName', e.target.value)}
-                  className="w-full px-3 py-2 text-sm border border-border/60 rounded-xl focus:outline-none focus:border-ring transition-colors"
+                  className="w-full px-3.5 py-2.5 text-sm border border-input rounded-xl bg-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 transition-all"
                   placeholder="Dela Cruz"
                 />
               </div>
@@ -144,7 +143,7 @@ export default function CheckoutPage() {
                   type="email"
                   value={form.email}
                   onChange={(e) => updateField('email', e.target.value)}
-                  className="w-full px-3 py-2 text-sm border border-border/60 rounded-xl focus:outline-none focus:border-ring transition-colors"
+                  className="w-full px-3.5 py-2.5 text-sm border border-input rounded-xl bg-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 transition-all"
                   placeholder="juan@example.com"
                 />
               </div>
@@ -154,7 +153,7 @@ export default function CheckoutPage() {
                   type="tel"
                   value={form.phone}
                   onChange={(e) => updateField('phone', e.target.value)}
-                  className="w-full px-3 py-2 text-sm border border-border/60 rounded-xl focus:outline-none focus:border-ring transition-colors"
+                  className="w-full px-3.5 py-2.5 text-sm border border-input rounded-xl bg-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 transition-all"
                   placeholder="0917 123 4567"
                 />
               </div>
@@ -162,7 +161,7 @@ export default function CheckoutPage() {
           </div>
 
           {/* Delivery Address */}
-          <div className="bg-card border border-border/40 rounded-2xl p-6">
+          <div className="bg-card border border-border/60 rounded-2xl p-6">
             <h2 className="text-sm font-semibold text-foreground mb-4">Delivery Address</h2>
             <div className="space-y-4">
               <div>
@@ -171,7 +170,7 @@ export default function CheckoutPage() {
                   type="text"
                   value={form.address}
                   onChange={(e) => updateField('address', e.target.value)}
-                  className="w-full px-3 py-2 text-sm border border-border/60 rounded-xl focus:outline-none focus:border-ring transition-colors"
+                  className="w-full px-3.5 py-2.5 text-sm border border-input rounded-xl bg-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 transition-all"
                   placeholder="123 Rizal St., Brgy. San Roque"
                 />
               </div>
@@ -182,7 +181,7 @@ export default function CheckoutPage() {
                     type="text"
                     value={form.city}
                     onChange={(e) => updateField('city', e.target.value)}
-                    className="w-full px-3 py-2 text-sm border border-border/60 rounded-xl focus:outline-none focus:border-ring transition-colors"
+                    className="w-full px-3.5 py-2.5 text-sm border border-input rounded-xl bg-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 transition-all"
                   />
                 </div>
                 <div>
@@ -191,7 +190,7 @@ export default function CheckoutPage() {
                     type="text"
                     value={form.province}
                     onChange={(e) => updateField('province', e.target.value)}
-                    className="w-full px-3 py-2 text-sm border border-border/60 rounded-xl focus:outline-none focus:border-ring transition-colors"
+                    className="w-full px-3.5 py-2.5 text-sm border border-input rounded-xl bg-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 transition-all"
                   />
                 </div>
                 <div>
@@ -200,7 +199,7 @@ export default function CheckoutPage() {
                     type="text"
                     value={form.zip}
                     onChange={(e) => updateField('zip', e.target.value)}
-                    className="w-full px-3 py-2 text-sm border border-border/60 rounded-xl focus:outline-none focus:border-ring transition-colors"
+                    className="w-full px-3.5 py-2.5 text-sm border border-input rounded-xl bg-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 transition-all"
                     placeholder="1800"
                   />
                 </div>
@@ -210,7 +209,7 @@ export default function CheckoutPage() {
                 <textarea
                   value={form.notes}
                   onChange={(e) => updateField('notes', e.target.value)}
-                  className="w-full px-3 py-2 text-sm border border-border/60 rounded-xl focus:outline-none focus:border-ring transition-colors resize-none"
+                  className="w-full px-3.5 py-2.5 text-sm border border-input rounded-xl bg-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 transition-all resize-none"
                   rows={3}
                   placeholder="Special instructions, delivery time preferences, etc."
                 />
@@ -219,31 +218,30 @@ export default function CheckoutPage() {
           </div>
 
           {/* Payment Method */}
-          <div className="bg-card border border-border/40 rounded-2xl p-6">
+          <div className="bg-card border border-border/60 rounded-2xl p-6">
             <h2 className="text-sm font-semibold text-foreground mb-4">Payment Method</h2>
             <div className="space-y-2">
               {paymentMethods.map((method) => {
                 const Icon = method.icon;
+                const selected = paymentMethod === method.id;
                 return (
                   <button
                     key={method.id}
                     onClick={() => setPaymentMethod(method.id)}
                     className={`w-full flex items-center gap-3 p-3 border rounded-xl text-left transition-colors ${
-                      paymentMethod === method.id
-                        ? 'border-foreground bg-secondary/30'
-                        : 'border-border/40 hover:border-border/60'
+                      selected
+                        ? 'border-foreground bg-secondary/40'
+                        : 'border-border/60 hover:border-border'
                     }`}
                   >
                     <Icon className="w-4 h-4 text-muted-foreground" />
-                    <span className="text-sm text-muted-foreground">{method.name}</span>
-                    {paymentMethod === method.id && (
-                      <Check className="w-3.5 h-3.5 text-foreground ml-auto" />
-                    )}
+                    <span className="text-sm text-foreground">{method.name}</span>
+                    {selected && <Check className="w-3.5 h-3.5 text-foreground ml-auto" />}
                   </button>
                 );
               })}
             </div>
-            <p className="text-[10px] text-muted-foreground/60 mt-3 italic">
+            <p className="text-[10px] text-muted-foreground/70 mt-3 italic">
               Demo mode — no payment will be processed.
             </p>
           </div>
@@ -251,7 +249,7 @@ export default function CheckoutPage() {
 
         {/* Order Summary Sidebar */}
         <div className="lg:col-span-2">
-          <div className="bg-secondary/30 border border-border/40 rounded-2xl p-6 sticky top-24">
+          <div className="bg-secondary/40 border border-border/60 rounded-2xl p-6 sticky top-24 shadow-sm">
             <h2 className="text-sm font-semibold text-foreground mb-4">Order Summary</h2>
 
             {/* Items */}
@@ -263,7 +261,7 @@ export default function CheckoutPage() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-xs font-medium text-foreground line-clamp-1">{item.name}</p>
-                    <p className="text-[10px] text-muted-foreground/60">Qty: {item.quantity}</p>
+                    <p className="text-[10px] text-muted-foreground/70">Qty: {item.quantity}</p>
                   </div>
                   <p className="text-xs font-medium text-foreground">{formatPrice(item.price * item.quantity)}</p>
                 </div>
@@ -288,12 +286,12 @@ export default function CheckoutPage() {
 
             <button
               onClick={handlePlaceOrder}
-              className="mt-6 w-full py-3 bg-foreground text-white text-sm font-medium rounded-lg hover:bg-foreground/90 transition-colors"
+              className="mt-6 w-full py-3 bg-primary text-primary-foreground text-sm font-medium rounded-xl hover:bg-primary/90 transition-colors shadow-sm"
             >
               Place Order (Demo)
             </button>
 
-            <p className="text-[10px] text-muted-foreground/60 text-center mt-3">
+            <p className="text-[10px] text-muted-foreground/70 text-center mt-3">
               This is a demo prototype. No real payment will be processed.
             </p>
           </div>

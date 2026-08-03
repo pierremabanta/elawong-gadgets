@@ -18,15 +18,15 @@ export default function HomePage() {
       />
 
       {/* ===== Brands conveyor belt ===== */}
-      <section className="border-t border-border/20 bg-background py-8 md:py-10 w-full">
+      <section className="border-y border-border/60 bg-background py-8 md:py-10 w-full">
         <div className="px-4 sm:px-6 lg:px-10">
           <BrandsMarquee label="Authorized Partner Brands" />
         </div>
       </section>
 
       {/* ===== Featured Products ===== */}
-      <section className="container py-20 md:py-28">
-        <div className="flex items-end justify-between mb-12">
+      <section className="container py-16 md:py-24">
+        <div className="flex items-end justify-between mb-10 md:mb-12">
           <div>
             <span className="text-xs font-semibold text-primary uppercase tracking-[0.15em] mb-2 block">Featured</span>
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground tracking-tight">Popular Products</h2>
@@ -40,7 +40,7 @@ export default function HomePage() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5">
           {featured.slice(0, 8).map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
@@ -58,9 +58,9 @@ export default function HomePage() {
       </section>
 
       {/* ===== Categories — clean text-only ===== */}
-      <section className="border-t border-border/20">
-        <div className="container py-20 md:py-28">
-          <div className="text-center mb-14">
+      <section className="border-t border-border/60">
+        <div className="container py-16 md:py-24">
+          <div className="text-center mb-12 md:mb-14">
             <span className="text-xs font-semibold text-primary uppercase tracking-[0.15em] mb-2 block">Categories</span>
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground tracking-tight">Shop by Category</h2>
           </div>
@@ -77,12 +77,12 @@ export default function HomePage() {
               <Link
                 key={cat.name}
                 href={`/shop?category=${cat.name}`}
-                className="group border border-border/20 px-5 py-6 text-center hover:border-primary/40 transition-all duration-300"
+                className="group border border-border/60 rounded-2xl px-5 py-6 text-center hover:border-primary/40 hover:shadow-sm transition-all duration-200"
               >
                 <h3 className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors tracking-tight">
                   {cat.name}
                 </h3>
-                <p className="text-xs text-muted-foreground/50 mt-1.5">{cat.desc}</p>
+                <p className="text-xs text-muted-foreground/60 mt-1.5">{cat.desc}</p>
               </Link>
             ))}
           </div>
@@ -90,8 +90,8 @@ export default function HomePage() {
       </section>
 
       {/* ===== CTA — direct, no fluff ===== */}
-      <section className="container py-20 md:py-28">
-        <div className="bg-foreground px-8 py-16 sm:px-14 sm:py-20 md:px-20 md:py-24 text-center">
+      <section className="container py-16 md:py-24">
+        <div className="bg-foreground rounded-2xl px-8 py-16 sm:px-14 sm:py-20 md:px-20 md:py-24 text-center">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
             Visit Our Store Today
           </h2>
@@ -100,7 +100,7 @@ export default function HomePage() {
           </p>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 px-8 py-3.5 bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/80 transition-colors"
+            className="inline-flex items-center gap-2 px-8 py-3.5 bg-primary text-primary-foreground text-sm font-medium rounded-xl hover:bg-primary/90 transition-colors"
           >
             Get Directions
             <ChevronRight className="w-4 h-4" />

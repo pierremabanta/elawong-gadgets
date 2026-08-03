@@ -43,7 +43,7 @@ export default function CartPage() {
           {cart.map((item) => (
             <div
               key={item.id}
-              className="flex gap-4 sm:gap-6 p-4 bg-card border border-border/60 rounded-2xl"
+              className="flex gap-4 sm:gap-6 p-4 bg-card border border-border/60 rounded-2xl shadow-sm"
             >
               {/* Image */}
               <Link
@@ -61,7 +61,7 @@ export default function CartPage() {
                 >
                   {item.name}
                 </Link>
-                <p className="text-[10px] text-muted-foreground/60 uppercase tracking-wider mt-0.5">{item.category}</p>
+                <p className="text-[10px] text-muted-foreground/70 uppercase tracking-wider mt-0.5">{item.category}</p>
                 <p className="text-sm font-semibold text-foreground mt-2">
                   {formatPrice(item.price)}
                 </p>
@@ -71,23 +71,26 @@ export default function CartPage() {
                   <div className="flex items-center border border-input rounded-lg">
                     <button
                       onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                      className="p-1.5 text-muted-foreground hover:text-foreground transition-colors"
+                      className="p-2 text-muted-foreground hover:text-foreground transition-colors"
+                      aria-label={`Decrease quantity for ${item.name}`}
                     >
-                      <Minus className="w-3 h-3" />
+                      <Minus className="w-3.5 h-3.5" />
                     </button>
-                    <span className="w-8 text-center text-xs font-medium text-foreground">{item.quantity}</span>
+                    <span className="w-9 text-center text-xs font-medium text-foreground">{item.quantity}</span>
                     <button
                       onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                      className="p-1.5 text-muted-foreground hover:text-foreground transition-colors"
+                      className="p-2 text-muted-foreground hover:text-foreground transition-colors"
+                      aria-label={`Increase quantity for ${item.name}`}
                     >
-                      <Plus className="w-3 h-3" />
+                      <Plus className="w-3.5 h-3.5" />
                     </button>
                   </div>
                   <button
                     onClick={() => removeFromCart(item.id)}
-                    className="p-1.5 text-muted-foreground/40 hover:text-destructive transition-colors"
+                    className="p-2 text-muted-foreground/50 hover:text-destructive transition-colors"
+                    aria-label={`Remove ${item.name} from cart`}
                   >
-                    <Trash2 className="w-3.5 h-3.5" />
+                    <Trash2 className="w-4 h-4" />
                   </button>
                 </div>
               </div>
@@ -97,7 +100,7 @@ export default function CartPage() {
 
         {/* Order Summary */}
         <div className="lg:col-span-1">
-          <div className="bg-secondary/40 border border-border/60 rounded-2xl p-6 sticky top-24">
+          <div className="bg-secondary/40 border border-border/60 rounded-2xl p-6 sticky top-24 shadow-sm">
             <h2 className="text-sm font-semibold text-foreground mb-4">Order Summary</h2>
 
             <div className="space-y-3 text-sm">
@@ -117,7 +120,7 @@ export default function CartPage() {
 
             <Link
               href="/checkout"
-              className="mt-6 w-full flex items-center justify-center gap-2 py-3 bg-primary text-primary-foreground text-sm font-medium rounded-lg hover:bg-primary/90 transition-colors shadow-sm"
+              className="mt-6 w-full flex items-center justify-center gap-2 py-3 bg-primary text-primary-foreground text-sm font-medium rounded-xl hover:bg-primary/90 transition-colors shadow-sm"
             >
               Proceed to Checkout
               <ChevronRight className="w-4 h-4" />
@@ -125,7 +128,7 @@ export default function CartPage() {
 
             <Link
               href="/shop"
-              className="mt-3 w-full flex items-center justify-center gap-2 py-3 border border-border text-muted-foreground text-sm font-medium rounded-lg hover:bg-accent hover:text-accent-foreground transition-colors"
+              className="mt-3 w-full flex items-center justify-center gap-2 py-3 border border-border text-muted-foreground text-sm font-medium rounded-xl hover:bg-accent hover:text-accent-foreground transition-colors"
             >
               Continue Shopping
             </Link>

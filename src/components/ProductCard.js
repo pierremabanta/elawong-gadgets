@@ -53,7 +53,7 @@ export default function ProductCard({ product }) {
   const inCompare = isInCompare(id);
 
   return (
-    <div className="group relative bg-card border border-border/20 overflow-hidden transition-all duration-300 flex flex-col">
+    <div className="group relative bg-card border border-border/60 rounded-2xl shadow-sm hover:shadow-md transition-all duration-200 flex flex-col overflow-hidden">
       {/* Image */}
       <Link
         href={`/shop/${id}`}
@@ -62,13 +62,13 @@ export default function ProductCard({ product }) {
         <img
           src={displayImage}
           alt={name}
-          className="w-full h-full object-contain group-hover:scale-105 transition-all duration-500"
+          className="w-full h-full object-contain group-hover:scale-105 transition-all duration-500 ease-out"
           style={{ opacity: fade ? 1 : 0, transition: 'opacity 0.3s ease, transform 0.5s ease' }}
           loading="lazy"
         />
         {badge && (
           <span
-            className={`absolute top-3 left-3 px-2.5 py-1 text-[10px] font-semibold ${
+            className={`absolute top-3 left-3 px-2.5 py-1 text-[10px] font-semibold rounded-lg ${
               badge === 'New'
                 ? 'bg-primary/10 text-primary'
                 : badge === 'Sale'
@@ -84,10 +84,11 @@ export default function ProductCard({ product }) {
         <button
           onClick={handleCompareClick}
           title={inCompare ? 'Remove from compare' : 'Add to compare'}
-          className={`absolute top-3 right-3 p-2 transition-all duration-200 ${
+          aria-label={inCompare ? 'Remove from compare' : 'Add to compare'}
+          className={`absolute top-3 right-3 p-2 rounded-lg transition-all duration-200 backdrop-blur-sm ${
             inCompare
-              ? 'bg-primary text-primary-foreground'
-              : 'bg-background/80 text-muted-foreground hover:text-foreground'
+              ? 'bg-primary text-primary-foreground shadow-sm'
+              : 'bg-background/70 text-muted-foreground hover:text-foreground'
           }`}
         >
           <GitCompare className="w-3.5 h-3.5" />
@@ -96,7 +97,7 @@ export default function ProductCard({ product }) {
 
       {/* Info */}
       <div className="p-4 flex flex-col flex-1">
-        <p className="text-[10px] text-muted-foreground/60 uppercase tracking-wider mb-1">{category}</p>
+        <p className="text-[10px] text-muted-foreground/70 uppercase tracking-wider mb-1">{category}</p>
         <Link
           href={`/shop/${id}`}
           className="text-sm font-medium text-foreground group-hover:text-muted-foreground transition-colors line-clamp-1"
@@ -129,8 +130,8 @@ export default function ProductCard({ product }) {
               stockStatus === 'in' ? 'bg-primary' : stockStatus === 'low' ? 'bg-destructive' : 'bg-muted-foreground/40'
             }`}
           />
-          {stockStatus === 'in' && <span className="text-primary">In Stock</span>}
-          {stockStatus === 'low' && <span className="text-destructive">Low Stock</span>}
+          {stockStatus === 'in' && <span className="text-primary font-medium">In Stock</span>}
+          {stockStatus === 'low' && <span className="text-destructive font-medium">Low Stock</span>}
           {stockStatus === 'out' && <span className="text-muted-foreground/60">Out of Stock</span>}
         </p>
       </div>

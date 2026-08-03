@@ -138,7 +138,7 @@ export default function ProductDetailPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
       {/* Breadcrumbs */}
-      <nav className="flex items-center gap-1.5 text-xs text-muted-foreground/60 mb-6 overflow-x-auto whitespace-nowrap scrollbar-none">
+      <nav className="flex items-center gap-1.5 text-xs text-muted-foreground/70 mb-6 overflow-x-auto whitespace-nowrap scrollbar-none">
         <Link href="/" className="hover:text-foreground transition-colors">
           Home
         </Link>
@@ -170,7 +170,7 @@ export default function ProductDetailPage() {
           <div className="flex items-center gap-3 mb-3">
             <h1 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">{product.name}</h1>
             {product.badge && (
-              <span className="shrink-0 text-[10px] font-semibold uppercase tracking-wide px-2 py-0.5 bg-primary/15 text-primary">
+              <span className="shrink-0 text-[10px] font-semibold uppercase tracking-wide px-2.5 py-1 bg-primary/15 text-primary rounded-lg">
                 {product.badge}
               </span>
             )}
@@ -201,7 +201,7 @@ export default function ProductDetailPage() {
               </span>
             )}
             {product.originalPrice && (
-              <span className="text-xs font-bold text-primary bg-primary/15 px-2 py-0.5">
+              <span className="text-xs font-bold text-primary bg-primary/15 px-2.5 py-1 rounded-lg">
                 -{Math.round((1 - product.price / product.originalPrice) * 100)}%
               </span>
             )}
@@ -219,7 +219,7 @@ export default function ProductDetailPage() {
               <select
                 value={selectedBranch}
                 onChange={(e) => handleBranchChange(e.target.value)}
-                className="w-full appearance-none pl-4 pr-10 py-3 text-sm bg-background border border-input focus:outline-none focus:border-ring transition-colors"
+                className="w-full appearance-none pl-4 pr-10 py-3 text-sm bg-background border border-input rounded-xl focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 transition-all"
               >
                 {branches.map((branch) => (
                   <option key={branch.id} value={branch.id}>
@@ -353,15 +353,15 @@ export default function ProductDetailPage() {
           </button>
 
           {/* Trust badges */}
-          <div className="mt-8 grid grid-cols-3 gap-4 pt-6 border-t border-border/20">
+          <div className="mt-8 grid grid-cols-3 gap-4 pt-6 border-t border-border/60">
             {[
               { icon: Shield, label: 'Official Warranty' },
               { icon: Truck, label: 'Free Delivery' },
               { icon: RotateCcw, label: '7-Day Returns' },
             ].map((item) => (
               <div key={item.label} className="text-center">
-                <item.icon className="w-4 h-4 text-muted-foreground/60 mx-auto mb-1" />
-                <p className="text-[10px] text-muted-foreground">{item.label}</p>
+                <item.icon className="w-4 h-4 text-muted-foreground/70 mx-auto mb-1" />
+                <p className="text-[10px] text-muted-foreground/80">{item.label}</p>
               </div>
             ))}
           </div>

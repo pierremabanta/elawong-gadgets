@@ -55,7 +55,7 @@ export default function BrandsMarquee({ label = 'Authorized Partner Brands' }) {
   return (
     <div className="w-full">
       {label && (
-        <p className="text-center text-[11px] font-medium uppercase tracking-[0.2em] text-muted-foreground/50 mb-4">
+        <p className="text-center text-[11px] font-medium uppercase tracking-[0.2em] text-muted-foreground/70 mb-4">
           {label}
         </p>
       )}

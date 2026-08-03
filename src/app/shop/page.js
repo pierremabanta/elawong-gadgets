@@ -28,21 +28,21 @@ function ShopContent() {
   return (
     <>
       {/* Search & Filter Bar */}
-      <div className="flex flex-col sm:flex-row gap-4 mb-8">
+      <div className="flex flex-col sm:flex-row gap-3 mb-6">
         <div className="relative flex-1 max-w-md">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
           <input
             type="text"
             placeholder="Search products..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-2.5 text-sm border border-input focus:outline-none focus:border-ring transition-colors bg-background"
+            className="w-full pl-10 pr-4 py-3 text-sm border border-input rounded-xl bg-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 transition-all"
           />
         </div>
       </div>
 
       {/* Category Tabs */}
-      <div className="flex gap-2 overflow-x-auto pb-2 mb-8 scrollbar-none">
+      <div className="flex gap-2 overflow-x-auto pb-2 mb-6 scrollbar-none">
         {categories.map((cat) => (
           <button
             key={cat.id}
@@ -50,7 +50,7 @@ function ShopContent() {
               setActiveCategory(cat.id);
               setSearchQuery('');
             }}
-            className={`shrink-0 px-4 py-2 text-xs font-medium transition-colors ${
+            className={`shrink-0 px-4 py-2 text-xs font-medium rounded-lg transition-all duration-200 ${
               activeCategory === cat.id
                 ? 'bg-primary text-primary-foreground shadow-sm'
                 : 'bg-secondary text-muted-foreground hover:bg-accent hover:text-accent-foreground'
@@ -68,7 +68,7 @@ function ShopContent() {
 
       {/* Product Grid */}
       {products.length > 0 ? (
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5">
           {products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
@@ -81,7 +81,7 @@ function ShopContent() {
               setSearchQuery('');
               setActiveCategory('all');
             }}
-            className="mt-4 text-sm text-primary hover:text-primary/80 underline transition-colors"
+            className="mt-4 text-sm text-primary hover:text-primary/80 underline underline-offset-4 transition-colors"
           >
             Clear filters
           </button>
