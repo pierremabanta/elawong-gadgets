@@ -5,11 +5,16 @@ import Link from 'next/link';
 import ColorSwatches from './ColorSwatches';
 import { useCompare } from '@/context/CompareContext';
 import { GitCompare } from 'lucide-react';
+import { DEFAULT_BRANCH_ID } from '@/data/branches';
 
 export default function ProductCard({ product }) {
-  const { id, name, category, price, originalPrice, image, badge, colors, images = [] } = product;
+  const { id, name, category, price, originalPrice, image, badge, colors, images = [], stock } = product;
   const [selectedColor, setSelectedColor] = useState(colors?.[0] || null);
   const { addToCompare, isInCompare, canAddMore } = useCompare();
+
+  // Stock for the main branch (Ayala Marikina) — card shows default branch availability
+  const mainStock = stock?.[DEFAULT_BRANCH_ID] ?? 0;
+  const stockStatus = mainStock <= 0 ? 'out' : mainStock <= 3 ? 'low' : 'in';
 
   // Use color-specific image if available and selected, otherwise default image
   const colorImage = selectedColor?.image 
@@ -115,6 +120,18 @@ export default function ProductCard({ product }) {
             <span className="text-xs text-muted-foreground/50 line-through">{formatPrice(originalPrice)}</span>
           )}
         </div>
+
+        {/* Stock indicator (Ayala Marikina branch) */}
+        <p className="mt-1.5 flex items-center gap-1.5 text-[11px]">
+          <span
+            className={`w-1.5 h-1.5 rounded-full shrink-0 ${
+              stockStatus === 'in' ? 'bg-primary' : stockStatus === 'low' ? 'bg-destructive' : 'bg-muted-foreground/40'
+            }`}
+          />
+          {stockStatus === 'in' && <span className="text-primary">In Stock</span>}
+          {stockStatus === 'low' && <span className="text-destructive">Low Stock</span>}
+          {stockStatus === 'out' && <span className="text-muted-foreground/60">Out of Stock</span>}
+        </p>
       </div>
     </div>
   );

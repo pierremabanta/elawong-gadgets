@@ -5,6 +5,7 @@ import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { ChevronLeft, ChevronRight, Minus, Plus, ShoppingBag, Check, Shield, Truck, RotateCcw, GitCompare, Star, ChevronDown } from 'lucide-react';
 import { getProductById, getProductsByCategory } from '@/data/products';
+import { branches, DEFAULT_BRANCH_ID, getBranchById } from '@/data/branches';
 import { useCart } from '@/context/CartContext';
 import ColorSwatches from '@/components/ColorSwatches';
 import { useCompare } from '@/context/CompareContext';
@@ -63,6 +64,7 @@ export default function ProductDetailPage() {
   const [quantity, setQuantity] = useState(1);
   const [added, setAdded] = useState(false);
   const [selectedColor, setSelectedColor] = useState(product?.colors?.[0] || null);
+  const [selectedBranch, setSelectedBranch] = useState(DEFAULT_BRANCH_ID);
   const [activeTab, setActiveTab] = useState('details');
   const [openFaq, setOpenFaq] = useState(0);
 
@@ -89,6 +91,17 @@ export default function ProductDetailPage() {
     .filter((p) => p.id !== product.id)
     .slice(0, 4);
   const avgRating = sampleReviews.reduce((s, r) => s + r.rating, 0) / sampleReviews.length;
+
+  // ---- Stock logic (static for now) ----
+  const stockByBranch = product.stock || {};
+  const stock = stockByBranch[selectedBranch] ?? 0;
+  const selectedBranchInfo = getBranchById(selectedBranch);
+  const stockStatus = stock <= 0 ? 'out' : stock <= 3 ? 'low' : 'in';
+
+  const handleBranchChange = (branchId) => {
+    setSelectedBranch(branchId);
+    setQuantity(1);
+  };
 
   const tabs = [
     { id: 'details', label: 'Details' },
@@ -183,6 +196,61 @@ export default function ProductDetailPage() {
           {/* Punchy description */}
           <p className="text-sm text-muted-foreground leading-relaxed mb-8">{product.description}</p>
 
+          {/* Branch selector + stock */}
+          <div className="mb-8">
+            <h3 className="text-xs font-semibold text-foreground uppercase tracking-wider mb-3">
+              Check Availability
+            </h3>
+            <div className="relative">
+              <select
+                value={selectedBranch}
+                onChange={(e) => handleBranchChange(e.target.value)}
+                className="w-full appearance-none pl-4 pr-10 py-3 text-sm bg-background border border-input focus:outline-none focus:border-ring transition-colors"
+              >
+                {branches.map((branch) => (
+                  <option key={branch.id} value={branch.id}>
+                    {branch.name}
+                  </option>
+                ))}
+              </select>
+              <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
+            </div>
+
+            <div className="mt-3 flex items-center gap-2.5">
+              <span
+                className={`inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-1 ${
+                  stockStatus === 'in'
+                    ? 'bg-primary/10 text-primary'
+                    : stockStatus === 'low'
+                    ? 'bg-destructive/10 text-destructive'
+                    : 'bg-muted text-muted-foreground'
+                }`}
+              >
+                {stockStatus === 'in' && (
+                  <>
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                    In Stock — {stock} {stock === 1 ? 'unit' : 'units'}
+                  </>
+                )}
+                {stockStatus === 'low' && (
+                  <>
+                    <span className="w-1.5 h-1.5 rounded-full bg-destructive" />
+                    Low Stock — Only {stock} {stock === 1 ? 'unit' : 'units'} left
+                  </>
+                )}
+                {stockStatus === 'out' && (
+                  <>
+                    <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground" />
+                    Out of Stock
+                  </>
+                )}
+              </span>
+              <span className="text-xs text-muted-foreground/60">
+                {selectedBranchInfo.name}
+              </span>
+            </div>
+          </div>
+
           {/* Color Options */}
           {product.colors && product.colors.length > 1 && (
             <div className="mb-8">
@@ -200,7 +268,7 @@ export default function ProductDetailPage() {
           {/* Quantity Selector */}
           <div className="flex items-center gap-4 mb-6">
             <span className="text-xs font-semibold text-foreground uppercase tracking-wider">Qty</span>
-            <div className="flex items-center border border-border/60">
+            <div className={`flex items-center border border-border/60 ${stock === 0 ? 'opacity-40 pointer-events-none' : ''}`}>
               <button
                 onClick={() => setQuantity(Math.max(1, quantity - 1))}
                 className="p-2.5 text-muted-foreground hover:text-foreground transition-colors"
@@ -209,12 +277,15 @@ export default function ProductDetailPage() {
               </button>
               <span className="w-10 text-center text-sm font-medium">{quantity}</span>
               <button
-                onClick={() => setQuantity(quantity + 1)}
+                onClick={() => setQuantity(Math.min(stock, quantity + 1))}
                 className="p-2.5 text-muted-foreground hover:text-foreground transition-colors"
               >
                 <Plus className="w-3.5 h-3.5" />
               </button>
             </div>
+            {stock > 0 && stock <= 5 && (
+              <span className="text-xs text-destructive/80">Max {stock} per order</span>
+            )}
             {inCart && (
               <span className="text-xs text-muted-foreground/60">
                 ({inCart.quantity} in cart)
@@ -225,13 +296,21 @@ export default function ProductDetailPage() {
           {/* Add to Cart Button */}
           <button
             onClick={handleAddToCart}
+            disabled={stock === 0}
             className={`w-full flex items-center justify-center gap-2 py-3.5 text-sm font-medium transition-all ${
-              added
+              stock === 0
+                ? 'bg-muted text-muted-foreground cursor-not-allowed'
+                : added
                 ? 'bg-primary/20 text-primary border border-primary/30'
                 : 'bg-foreground text-white hover:bg-foreground/90'
             }`}
           >
-            {added ? (
+            {stock === 0 ? (
+              <>
+                <ShoppingBag className="w-4 h-4" />
+                Out of Stock at this Branch
+              </>
+            ) : added ? (
               <>
                 <Check className="w-4 h-4" />
                 Added to Cart!

@@ -24,6 +24,15 @@ export const products = [
     ],
     badge: "New",
     featured: true,
+    stock: {
+      "ayala-marikina": 5,
+      commonwealth: 8,
+      cainta: 3,
+      montalban: 0,
+      riverbanks: 12,
+      tanay: 2,
+      pasay: 6,
+    },
     colors: [
       { name: "Natural Titanium", hex: "#8f8f8f", image: "/images/iphone-15-pro-max/natural-titanium.png" },
       { name: "Blue Titanium", hex: "#4a6fa5", image: "/images/iphone-15-pro-max/blue-titanium.png" },
@@ -55,6 +64,15 @@ export const products = [
     ],
     badge: null,
     featured: true,
+    stock: {
+      "ayala-marikina": 2,
+      commonwealth: 10,
+      cainta: 0,
+      montalban: 5,
+      riverbanks: 7,
+      tanay: 4,
+      pasay: 1,
+    },
     colors: [
       { name: "Pink", hex: "#ffc0cb", image: "/images/iphone-15-pro-max/natural-titanium.png" },
       { name: "Blue", hex: "#a0c4ff", image: "/images/iphone-15-pro-max/blue-titanium.png" },
