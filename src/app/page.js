@@ -10,6 +10,11 @@ export default function HomePage() {
 
   return (
     <div>
+      {/* ===== TEST BANNER (friend's demo change — remove after testing) ===== */}
+      <div className="bg-primary text-primary-foreground text-center py-3 px-4 text-sm font-semibold">
+        🔔 TEST CHANGE: This banner was added by isendevs via a pull request. If you can see this, the workflow works!
+      </div>
+
       {/* ===== Siri Ball Hero ===== */}
       <SiriBallHero
         description="Genuine Apple products with official warranty. From the latest iPhones to MacBooks, AirPods, and accessories."
