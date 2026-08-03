@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useCompare } from '@/context/CompareContext';
-import { ChevronLeft, X, GitCompare, ShoppingBag, Crown } from 'lucide-react';
+import { ChevronLeft, GitCompare, ArrowLeft, ArrowRight } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { useState } from 'react';
 
@@ -228,37 +228,23 @@ export default function ComparePage() {
                   className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-4 px-4 md:px-6 py-3 md:py-4 items-center"
                 >
                   <div className={`text-sm ${row.a ? 'text-foreground' : 'text-muted-foreground/40'}`}>
-                    {row.a ? (
-                      <span className="inline-flex items-center gap-2">
-                        {row.a}
-                        {row.better === 'a' && (
-                          <span className="inline-flex items-center gap-1 text-[10px] font-medium text-primary bg-primary/10 px-2 py-0.5 rounded-full">
-                            <Crown className="w-3 h-3" /> Better
-                          </span>
-                        )}
-                      </span>
-                    ) : (
-                      '—'
-                    )}
+                    {row.a ? row.a : '—'}
                   </div>
 
-                  <div className="text-sm font-medium text-foreground md:text-center capitalize">
-                    {LABELS[row.category] || row.category}
+                  <div className="flex items-center justify-center gap-1.5 text-sm font-medium md:text-center capitalize">
+                    {row.better === 'a' && (
+                      <ArrowLeft className="w-4 h-4 text-primary" />
+                    )}
+                    <span className={row.better ? 'text-foreground' : 'text-muted-foreground/60'}>
+                      {LABELS[row.category] || row.category}
+                    </span>
+                    {row.better === 'b' && (
+                      <ArrowRight className="w-4 h-4 text-primary" />
+                    )}
                   </div>
 
                   <div className={`text-sm md:text-right ${row.b ? 'text-foreground' : 'text-muted-foreground/40'}`}>
-                    {row.b ? (
-                      <span className="inline-flex items-center gap-2">
-                        {row.b}
-                        {row.better === 'b' && (
-                          <span className="inline-flex items-center gap-1 text-[10px] font-medium text-primary bg-primary/10 px-2 py-0.5 rounded-full">
-                            <Crown className="w-3 h-3" /> Better
-                          </span>
-                        )}
-                      </span>
-                    ) : (
-                      '—'
-                    )}
+                    {row.b ? row.b : '—'}
                   </div>
                 </div>
               ))}
@@ -266,8 +252,10 @@ export default function ComparePage() {
           </div>
 
           <div className="flex items-center justify-center gap-2 mb-6">
-            <span className="inline-flex items-center gap-1 text-[10px] font-medium text-primary bg-primary/10 px-2 py-1 rounded-full">
-              <Crown className="w-3 h-3" /> Better spec
+            <span className="inline-flex items-center gap-1.5 text-[10px] font-medium text-muted-foreground bg-secondary px-3 py-1 rounded-full">
+              <ArrowLeft className="w-3 h-3 text-primary" /> better on the left
+              <span className="mx-1 text-muted-foreground/40">·</span>
+              <ArrowRight className="w-3 h-3 text-primary" /> better on the right
             </span>
           </div>
 
