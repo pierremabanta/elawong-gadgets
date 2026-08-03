@@ -92,15 +92,29 @@ export default function ProductDetailPage() {
     .slice(0, 4);
   const avgRating = sampleReviews.reduce((s, r) => s + r.rating, 0) / sampleReviews.length;
 
-  // ---- Stock logic (static for now) ----
-  const stockByBranch = product.stock || {};
+  // ---- Stock logic (static, per color + branch) ----
+  const stockByBranch = selectedColor?.stock || product.stock || {};
   const stock = stockByBranch[selectedBranch] ?? 0;
   const selectedBranchInfo = getBranchById(selectedBranch);
   const stockStatus = stock <= 0 ? 'out' : stock <= 3 ? 'low' : 'in';
 
+  const outOfStockColors = (product.colors || [])
+    .filter((c) => (c.stock?.[selectedBranch] ?? 0) <= 0)
+    .map((c) => c.name);
+
+  const handleColorChange = (color) => {
+    setSelectedColor(color);
+    setQuantity(1);
+  };
+
   const handleBranchChange = (branchId) => {
     setSelectedBranch(branchId);
     setQuantity(1);
+    // If the current color is out of stock at this branch, switch to the first available one
+    if ((selectedColor?.stock?.[branchId] ?? 0) <= 0) {
+      const available = (product.colors || []).find((c) => (c.stock?.[branchId] ?? 0) > 0);
+      if (available) setSelectedColor(available);
+    }
   };
 
   const tabs = [
@@ -255,12 +269,14 @@ export default function ProductDetailPage() {
           {product.colors && product.colors.length > 1 && (
             <div className="mb-8">
               <h3 className="text-xs font-semibold text-foreground uppercase tracking-wider mb-3">
-                Color — <span className="text-muted-foreground font-normal normal-case">{selectedColor?.name}</span>
+                Color —{' '}
+                <span className="text-muted-foreground font-normal normal-case">{selectedColor?.name}</span>
               </h3>
               <ColorSwatches
                 colors={product.colors}
                 selectedColor={selectedColor}
-                onSelect={setSelectedColor}
+                onSelect={handleColorChange}
+                outOfStock={outOfStockColors}
               />
             </div>
           )}

@@ -12,8 +12,9 @@ export default function ProductCard({ product }) {
   const [selectedColor, setSelectedColor] = useState(colors?.[0] || null);
   const { addToCompare, isInCompare, canAddMore } = useCompare();
 
-  // Stock for the main branch (Ayala Marikina) — card shows default branch availability
-  const mainStock = stock?.[DEFAULT_BRANCH_ID] ?? 0;
+  // Stock for the main branch (Ayala Marikina) — per selected color
+  const colorStock = selectedColor?.stock?.[DEFAULT_BRANCH_ID];
+  const mainStock = colorStock ?? (stock?.[DEFAULT_BRANCH_ID] ?? 0);
   const stockStatus = mainStock <= 0 ? 'out' : mainStock <= 3 ? 'low' : 'in';
 
   // Use color-specific image if available and selected, otherwise default image
@@ -121,7 +122,7 @@ export default function ProductCard({ product }) {
           )}
         </div>
 
-        {/* Stock indicator (Ayala Marikina branch) */}
+        {/* Stock indicator (selected color · Ayala Marikina branch) */}
         <p className="mt-1.5 flex items-center gap-1.5 text-[11px]">
           <span
             className={`w-1.5 h-1.5 rounded-full shrink-0 ${
