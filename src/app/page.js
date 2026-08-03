@@ -12,7 +12,7 @@ export default function HomePage() {
     <div>
       {/* ===== Siri Ball Hero ===== */}
       <SiriBallHero
-        description="Genuine Apple products with official warranty. From the latest iPhones to MacBooks, AirPods, and accessories."
+        description="Testing Genuine Apple products with official warranty. From the latest iPhones to MacBooks, AirPods, and accessories."
         ctaText="Shop Now"
         ctaLink="/shop"
       />
