@@ -3,6 +3,7 @@ import { ChevronRight } from 'lucide-react';
 import { getFeaturedProducts } from '@/data/products';
 import ProductCard from '@/components/ProductCard';
 import { SiriBallHero } from '@/components/ui/siri-ball-hero';
+import BrandsMarquee from '@/components/BrandsMarquee';
 
 export default function HomePage() {
   const featured = getFeaturedProducts();
@@ -15,6 +16,13 @@ export default function HomePage() {
         ctaText="Shop Now"
         ctaLink="/shop"
       />
+
+      {/* ===== Brands conveyor belt ===== */}
+      <section className="border-t border-border/20 bg-background py-10 md:py-12">
+        <div className="container">
+          <BrandsMarquee label="Authorized Partner Brands" />
+        </div>
+      </section>
 
       {/* ===== Featured Products ===== */}
       <section className="container py-20 md:py-28">

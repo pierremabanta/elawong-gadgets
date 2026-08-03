@@ -2,7 +2,6 @@
 
 import React, { useRef, useEffect, Suspense } from 'react';
 import * as THREE from 'three';
-import BrandsMarquee from '@/components/BrandsMarquee';
 
 function SiriBallScene() {
   const mountRef = useRef(null);
@@ -263,7 +262,7 @@ export function SiriBallHero({
   return (
     <section
       role="banner"
-      className="relative w-full min-h-screen bg-background text-foreground overflow-hidden"
+      className="relative w-full h-screen bg-background text-foreground overflow-hidden"
     >
       <Suspense fallback={<div className="w-full h-full bg-background" />}>
         <SiriBallScene />
@@ -271,7 +270,7 @@ export function SiriBallHero({
 
       <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent z-10" />
 
-      <div className="relative z-20 flex flex-col items-center justify-end h-full pb-16 md:pb-24 text-center">
+      <div className="relative z-20 flex flex-col items-center justify-end h-full pb-20 md:pb-32 text-center">
         <div className="max-w-3xl px-4">
           <div className="animate-fade-in-up inline-flex flex-col items-center mb-6">
             <span
@@ -324,11 +323,6 @@ export function SiriBallHero({
               Learn More
             </a>
           </div>
-        </div>
-
-        {/* Brands conveyor belt */}
-        <div className="mt-12 md:mt-16 w-full px-4">
-          <BrandsMarquee />
         </div>
       </div>
     </section>
