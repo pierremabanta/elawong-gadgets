@@ -24,16 +24,20 @@ export default function BrandsMarquee({ label = 'Authorized Partner Brands' }) {
         <div className="pointer-events-none absolute inset-y-0 left-0 w-16 sm:w-28 z-10 bg-gradient-to-r from-background to-transparent" />
         <div className="pointer-events-none absolute inset-y-0 right-0 w-16 sm:w-28 z-10 bg-gradient-to-l from-background to-transparent" />
 
-        <div className="flex w-max animate-marquee items-center gap-12 sm:gap-16 pr-12 sm:pr-16">
+        <div className="flex w-max animate-marquee items-center">
           {loop.map((brand, i) => (
-            <img
+            <span
               key={`${brand.name}-${i}`}
-              src={brand.src}
-              alt={brand.name}
-              title={brand.name}
-              className="h-5 sm:h-6 w-auto object-contain opacity-60 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
-              draggable={false}
-            />
+              className="flex items-center px-6 sm:px-8"
+            >
+              <img
+                src={brand.src}
+                alt={brand.name}
+                title={brand.name}
+                className="h-5 sm:h-6 w-auto object-contain opacity-60 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
+                draggable={false}
+              />
+            </span>
           ))}
         </div>
       </div>
