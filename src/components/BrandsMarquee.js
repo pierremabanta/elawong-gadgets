@@ -16,6 +16,11 @@ const BRANDS = [
 // Enough copies to cover 4K (4096px) screens comfortably
 const COPY_COUNT = 6;
 
+// ⚙️ SPEED CONTROL — seconds it takes one set of logos to pass once.
+// Lower = faster (10 = quick drift), higher = slower (60 = lazy crawl).
+// Default 30. Just change this one number and redeploy.
+const SECONDS_PER_SET = 30;
+
 export default function BrandsMarquee({ label = 'Authorized Partner Brands' }) {
   const trackRef = useRef(null);
   const [distance, setDistance] = useState('0px');
@@ -63,7 +68,7 @@ export default function BrandsMarquee({ label = 'Authorized Partner Brands' }) {
           ref={trackRef}
           className="flex w-max items-center"
           style={{
-            animation: ready ? `marquee-px ${30 * COPY_COUNT}s linear infinite` : 'none',
+            animation: ready ? `marquee-px ${SECONDS_PER_SET * COPY_COUNT}s linear infinite` : 'none',
             '--marquee-distance': distance,
           }}
         >
