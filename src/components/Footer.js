@@ -10,7 +10,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="md:col-span-1">
             <StoreLogo link={false} className="mb-4" />
-            <p className="text-sm text-muted-foreground leading-relaxed mt-4">
+            <p className="text-sm text-muted-foreground/70 leading-relaxed mt-4">
               Your trusted Apple Authorized Reseller in Marikina City. Quality gadgets, genuine products, and exceptional service.
             </p>
           </div>

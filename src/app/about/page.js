@@ -5,7 +5,7 @@ export default function AboutPage() {
   return (
     <div>
       {/* Hero */}
-      <section className="relative overflow-hidden border-b border-border/40">
+      <section className="relative overflow-hidden border-b border-border/60">
         <div className="absolute inset-0 bg-gradient-to-b from-secondary/30 to-background pointer-events-none" />
         <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-primary/5 to-transparent rounded-full blur-3xl pointer-events-none" />
         
@@ -52,18 +52,18 @@ export default function AboutPage() {
               </p>
             </div>
           </div>
-          <div className="aspect-square bg-secondary/50 rounded-3xl flex items-center justify-center border border-border/40">
+          <div className="aspect-square bg-secondary/50 rounded-3xl flex items-center justify-center border border-border/60">
             <div className="text-center p-8">
               <Apple className="w-16 h-16 text-primary/40 mx-auto mb-4" />
               <p className="text-sm text-muted-foreground">Apple Authorized Reseller</p>
-              <p className="text-xs text-muted-foreground/60 mt-1">Ayala Marikina Branch</p>
+              <p className="text-xs text-muted-foreground/70 mt-1">Ayala Marikina Branch</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Values */}
-      <section className="border-y border-border/40 bg-secondary/30">
+      <section className="border-y border-border/60 bg-secondary/30">
         <div className="container py-16 md:py-24">
           <div className="text-center mb-12">
             <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-2">Why Choose Us</p>
@@ -92,7 +92,7 @@ export default function AboutPage() {
                 desc: 'Your satisfaction is our top priority, always.',
               },
             ].map((item) => (
-              <div key={item.title} className="bg-card rounded-2xl border border-border/60 p-6 text-center hover:border-primary/30 hover:shadow-sm transition-all duration-300">
+              <div key={item.title} className="bg-card rounded-2xl border border-border/60 p-6 text-center hover:border-primary/30 hover:shadow-sm transition-all duration-200">
                 <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
                   <item.icon className="w-4 h-4 text-primary" />
                 </div>
@@ -119,7 +119,7 @@ export default function AboutPage() {
         </p>
         <Link
           href="/contact"
-          className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground text-sm font-medium rounded-lg hover:bg-primary/90 transition-colors shadow-sm"
+          className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground text-sm font-medium rounded-xl hover:bg-primary/90 transition-colors shadow-sm"
         >
           Get in Touch
           <ChevronRight className="w-4 h-4" />

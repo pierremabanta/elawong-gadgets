@@ -185,10 +185,10 @@ export default function ComparePage() {
 
       {items.length < 2 ? (
         <div className="text-center py-20">
-          <GitCompare className="w-12 h-12 text-muted-foreground/40 mx-auto mb-4" />
+          <GitCompare className="w-12 h-12 text-muted-foreground/50 mx-auto mb-4" />
           <h2 className="text-xl font-semibold text-foreground mb-2">Not enough products to compare</h2>
           <p className="text-sm text-muted-foreground mb-8">Add at least 2 products to compare them.</p>
-          <Link href="/shop" className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground text-sm font-medium rounded-lg hover:bg-primary/90 transition-colors shadow-sm">
+          <Link href="/shop" className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground text-sm font-medium rounded-xl hover:bg-primary/90 transition-colors shadow-sm">
             <ChevronLeft className="w-4 h-4" />
             Browse Products
           </Link>
@@ -196,10 +196,10 @@ export default function ComparePage() {
       ) : (
         <div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-            <div className="bg-card border border-border/60 rounded-2xl p-4 flex items-center gap-4">
+            <div className="bg-card border border-border/60 rounded-2xl p-4 flex items-center gap-4 shadow-sm">
               <img src={productA.image} alt={productA.name} className="w-16 h-16 object-contain" />
               <div>
-                <p className="text-xs text-muted-foreground/60 uppercase tracking-wider">{productA.category}</p>
+                <p className="text-xs text-muted-foreground/70 uppercase tracking-wider">{productA.category}</p>
                 <h3 className="text-base font-semibold text-foreground">{productA.name}</h3>
                 <p className="text-sm font-bold text-foreground">₱{productA.price.toLocaleString('en-PH')}</p>
               </div>
@@ -207,17 +207,17 @@ export default function ComparePage() {
             <div className="hidden md:flex items-center justify-center">
               <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">VS</span>
             </div>
-            <div className="bg-card border border-border/60 rounded-2xl p-4 flex items-center gap-4">
+            <div className="bg-card border border-border/60 rounded-2xl p-4 flex items-center gap-4 shadow-sm">
               <img src={productB.image} alt={productB.name} className="w-16 h-16 object-contain" />
               <div>
-                <p className="text-xs text-muted-foreground/60 uppercase tracking-wider">{productB.category}</p>
+                <p className="text-xs text-muted-foreground/70 uppercase tracking-wider">{productB.category}</p>
                 <h3 className="text-base font-semibold text-foreground">{productB.name}</h3>
                 <p className="text-sm font-bold text-foreground">₱{productB.price.toLocaleString('en-PH')}</p>
               </div>
             </div>
           </div>
 
-          <div className="bg-card border border-border/60 rounded-2xl overflow-hidden mb-8">
+          <div className="bg-card border border-border/60 rounded-2xl overflow-hidden mb-8 shadow-sm">
             <div className="px-6 py-4 border-b border-border/60 bg-secondary/30">
               <h2 className="text-lg font-semibold text-foreground">Specifications Comparison</h2>
             </div>
@@ -227,7 +227,7 @@ export default function ComparePage() {
                   key={index}
                   className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-4 px-4 md:px-6 py-3 md:py-4 items-center"
                 >
-                  <div className={`text-sm ${row.a ? 'text-foreground' : 'text-muted-foreground/40'}`}>
+                  <div className={`text-sm ${row.a ? 'text-foreground' : 'text-muted-foreground/50'}`}>
                     {row.a ? row.a : '—'}
                   </div>
 
@@ -235,7 +235,7 @@ export default function ComparePage() {
                     {row.better === 'a' && (
                       <ArrowLeft className="w-4 h-4 text-primary" />
                     )}
-                    <span className={row.better ? 'text-foreground' : 'text-muted-foreground/60'}>
+                    <span className={row.better ? 'text-foreground' : 'text-muted-foreground/70'}>
                       {LABELS[row.category] || row.category}
                     </span>
                     {row.better === 'b' && (
@@ -243,7 +243,7 @@ export default function ComparePage() {
                     )}
                   </div>
 
-                  <div className={`text-sm md:text-right ${row.b ? 'text-foreground' : 'text-muted-foreground/40'}`}>
+                  <div className={`text-sm md:text-right ${row.b ? 'text-foreground' : 'text-muted-foreground/50'}`}>
                     {row.b ? row.b : '—'}
                   </div>
                 </div>

@@ -11,7 +11,7 @@ export default function CompareDrawer() {
 
   return (
     <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-full max-w-3xl px-4">
-      <div className="bg-card border border-border/80 rounded-2xl shadow-2xl p-4 flex items-center gap-4">
+      <div className="bg-card/90 backdrop-blur-xl border border-border/80 rounded-2xl shadow-sm p-4 flex items-center gap-4">
         {/* Icon */}
         <div className="hidden sm:flex items-center justify-center w-10 h-10 rounded-full bg-primary/10 text-primary shrink-0">
           <GitCompare className="w-5 h-5" />
@@ -22,7 +22,7 @@ export default function CompareDrawer() {
           {items.map((item) => (
             <div
               key={item.id}
-              className="flex items-center gap-2 bg-secondary/50 border border-border/60 rounded-xl px-3 py-2 shrink-0"
+              className="flex items-center gap-2 bg-secondary/60 border border-border/60 rounded-xl px-3 py-2 shrink-0"
             >
               <img
                 src={item.image}
@@ -31,10 +31,11 @@ export default function CompareDrawer() {
               />
               <div className="flex flex-col">
                 <span className="text-xs font-medium text-foreground line-clamp-1">{item.name}</span>
-                <span className="text-[10px] text-muted-foreground">{item.category}</span>
+                <span className="text-[10px] text-muted-foreground/70">{item.category}</span>
               </div>
               <button
                 onClick={() => removeFromCompare(item.id)}
+                aria-label={`Remove ${item.name} from compare`}
                 className="ml-1 text-muted-foreground hover:text-foreground transition-colors"
               >
                 <X className="w-3.5 h-3.5" />
@@ -44,7 +45,7 @@ export default function CompareDrawer() {
 
           {/* Add more hint */}
           {items.length < 2 && (
-            <span className="text-xs text-muted-foreground/60 shrink-0">
+            <span className="text-xs text-muted-foreground/70 shrink-0">
               Add {2 - items.length} more to compare
             </span>
           )}
@@ -60,11 +61,11 @@ export default function CompareDrawer() {
           </button>
           <Link
             href="/compare"
-            className={`inline-flex items-center gap-2 px-4 py-2 text-xs font-medium rounded-lg transition-colors ${
+            className={`inline-flex items-center gap-2 px-4 py-2 text-xs font-medium rounded-xl transition-colors ${
               items.length === 2
-                ? 'bg-primary text-primary-foreground hover:bg-primary/90'
+                ? 'bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm'
                 : 'bg-secondary text-muted-foreground cursor-not-allowed'
-            }`            }
+            }`}
             onClick={(e) => items.length < 2 && e.preventDefault()}
           >
             Compare Now
