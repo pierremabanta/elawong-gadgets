@@ -1,7 +1,11 @@
 'use client';
 
+import { useEffect, useRef, useState } from 'react';
+
 // Auto-scrolling brands conveyor belt (CSS animation, left-moving).
-// Logos are duplicated once and the track slides -50% for a seamless loop.
+// Logos are repeated COPY_COUNT times so the track is always wider than any
+// screen; the track slides by exactly one set's width (measured in px) for a
+// seamless, gap-free loop.
 const BRANDS = [
   { name: 'Apple', src: '/brands/apple.png' },
   { name: 'realme', src: '/brands/realme.png' },
@@ -9,8 +13,39 @@ const BRANDS = [
   { name: 'Xiaomi', src: '/brands/xiaomi.png' },
 ];
 
+// Enough copies to cover 4K (4096px) screens comfortably
+const COPY_COUNT = 6;
+
 export default function BrandsMarquee({ label = 'Authorized Partner Brands' }) {
-  const loop = [...BRANDS, ...BRANDS];
+  const trackRef = useRef(null);
+  const [distance, setDistance] = useState('0px');
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    const measure = () => {
+      const track = trackRef.current;
+      if (!track) return;
+      // One set = total track width / number of copies
+      const setWidth = track.scrollWidth / COPY_COUNT;
+      if (setWidth > 0) {
+        setDistance(`-${setWidth}px`);
+        setReady(true);
+      }
+    };
+
+    measure();
+    // Re-measure once images load or on resize
+    window.addEventListener('resize', measure);
+    const timer = setTimeout(measure, 300);
+    return () => {
+      window.removeEventListener('resize', measure);
+      clearTimeout(timer);
+    };
+  }, []);
+
+  const loop = Array.from({ length: COPY_COUNT }, (_, copy) =>
+    BRANDS.map((brand) => ({ ...brand, key: `${brand.name}-${copy}` }))
+  ).flat();
 
   return (
     <div className="w-full">
@@ -24,10 +59,17 @@ export default function BrandsMarquee({ label = 'Authorized Partner Brands' }) {
         <div className="pointer-events-none absolute inset-y-0 left-0 w-10 sm:w-16 z-10 bg-gradient-to-r from-background to-transparent" />
         <div className="pointer-events-none absolute inset-y-0 right-0 w-10 sm:w-16 z-10 bg-gradient-to-l from-background to-transparent" />
 
-        <div className="flex w-max animate-marquee items-center">
-          {loop.map((brand, i) => (
+        <div
+          ref={trackRef}
+          className="flex w-max items-center"
+          style={{
+            animation: ready ? `marquee-px ${30 * COPY_COUNT}s linear infinite` : 'none',
+            '--marquee-distance': distance,
+          }}
+        >
+          {loop.map((brand) => (
             <span
-              key={`${brand.name}-${i}`}
+              key={brand.key}
               className="flex items-center px-6 sm:px-8"
             >
               <img
